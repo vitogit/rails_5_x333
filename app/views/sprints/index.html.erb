@@ -1,0 +1,10 @@
+<%= form_for @sprint do |sprint| %>
+  <%= sprint.fields_for :goals, @goals do |goal| %>
+    <%= goal.text_field :name %>
+    </br>
+    <%= goal.fields_for :actions, @actions do |action| %>
+      <%= action.text_field :name %></br>
+    <% end %>
+  <% end %>
+  <%= submit_tag("Save") %>
+<% end %>

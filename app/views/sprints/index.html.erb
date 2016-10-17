@@ -1,4 +1,5 @@
 <%= form_for @sprint do |sprint| %>
+  <%= sprint.text_field :name %></br>
   <%= sprint.fields_for :goals do |goal| %>
     <%= goal.text_field :name %></br>
     <%= goal.fields_for :actions do |action| %>
@@ -12,3 +13,18 @@
 <% flash.each do |message_type, message| %>
   <div class="alert alert-<%= message_type %>"><%= message %></div>
 <% end %>
+
+
+<div id="sprints">
+  <% @sprints_history.each do |sprint_history| %>
+    <h2><%= sprint_history.name %> <%= sprint_history.created_at %> </h2>
+    <% sprint_history.goals.each do |goal| %>
+      <%= goal.name %></br>
+      <% goal.actions.each do |action| %>
+        <%= action.name%></br>
+      <% end %>
+    </br></br>
+    <% end %>
+    <hr>
+  <% end %>
+</div>

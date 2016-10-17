@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161016222040) do
+ActiveRecord::Schema.define(version: 20161017005531) do
 
   create_table "actions", force: :cascade do |t|
     t.text     "name"
     t.boolean  "completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer  "goal_id"
+    t.index ["goal_id"], name: "index_actions_on_goal_id"
   end
 
   create_table "goals", force: :cascade do |t|
@@ -24,8 +26,8 @@ ActiveRecord::Schema.define(version: 20161016222040) do
     t.boolean  "completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "action_id"
-    t.index ["action_id"], name: "index_goals_on_action_id"
+    t.integer  "sprint_id"
+    t.index ["sprint_id"], name: "index_goals_on_sprint_id"
   end
 
   create_table "sprints", force: :cascade do |t|
@@ -33,8 +35,6 @@ ActiveRecord::Schema.define(version: 20161016222040) do
     t.boolean  "completed"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer  "goal_id"
-    t.index ["goal_id"], name: "index_sprints_on_goal_id"
   end
 
 end

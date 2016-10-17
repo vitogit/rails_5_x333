@@ -1,21 +1,35 @@
-<%= form_for @sprint do |sprint| %>
-  <%= sprint.text_field :name %></br>
-  <%= sprint.fields_for :goals do |goal| %>
-    <%= goal.text_field :name %></br>
-    <%= goal.fields_for :actions do |action| %>
-      <%= action.text_field :name %></br>
-    <% end %>
-    </br></br>
+<div id="new_sprint">
+    <h1>New Sprint</h1>
+
+  <%= form_for @sprint do |sprint| %>
+      <%= render :partial => "form", :locals => { sprint: sprint  } %>
+    <footer>
+      <%= submit_tag("Save") %>
+    </footer>
   <% end %>
-  <%= submit_tag("Save") %>
+
+  <% flash.each do |message_type, message| %>
+    <div class="alert alert-<%= message_type %>"><%= message %></div>
+  <% end %>
+</div>
+
+
+<% if @current_sprint %>
+  <div id="current_sprint">
+      <h1>Current Sprint</h1>
+      <h2><%= @current_sprint.name %> <%= @current_sprint.created_at %> </h2>
+      <% @current_sprint.goals.each do |goal| %>
+        <%= goal.name %></br>
+        <% goal.actions.each do |action| %>
+          <%= action.name%></br>
+        <% end %>
+      </br></br>
+      <% end %>
+  </div>
 <% end %>
 
-<% flash.each do |message_type, message| %>
-  <div class="alert alert-<%= message_type %>"><%= message %></div>
-<% end %>
-
-
-<div id="sprints">
+<div id="sprints_history">
+  <h1>History</h1>
   <% @sprints_history.each do |sprint_history| %>
     <h2><%= sprint_history.name %> <%= sprint_history.created_at %> </h2>
     <% sprint_history.goals.each do |goal| %>
@@ -28,3 +42,9 @@
     <hr>
   <% end %>
 </div>
+
+<style>
+  .goals {
+    display: inline-block
+  }
+</style>

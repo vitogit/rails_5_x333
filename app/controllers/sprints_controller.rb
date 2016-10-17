@@ -7,8 +7,10 @@ class SprintsController < ApplicationController
         goal.actions.build  name: "action_#{i}_#{j}"
       end
     end
-
-    @sprints_history = Sprint.includes(goals: [:actions]).order(id: :desc)
+    
+    sprints = Sprint.includes(goals: [:actions]).order(id: :desc)
+    @sprints_history = sprints.all[1..-1] #all but first
+    @current_sprint = sprints.first
   end
 
   def show

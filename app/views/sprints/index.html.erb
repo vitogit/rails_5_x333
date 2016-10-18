@@ -1,50 +1,29 @@
-<div id="new_sprint">
-    <h1>New Sprint</h1>
+<div class="container theme-showcase" role="main">
+  <div class="text-center jumbotron" class="new_sprint" id="new_sprint">
+    <h3>New Sprint</h3>
 
-  <%= form_for @sprint do |sprint| %>
-      <%= render :partial => "form", :locals => { sprint: sprint  } %>
-    <footer>
-      <%= submit_tag("Save") %>
-    </footer>
-  <% end %>
-
-  <% flash.each do |message_type, message| %>
-    <div class="alert alert-<%= message_type %>"><%= message %></div>
-  <% end %>
-</div>
-
-
-<% if @current_sprint %>
-  <div id="current_sprint">
-      <h1>Current Sprint</h1>
-      <h2><%= @current_sprint.name %> <%= @current_sprint.created_at %> </h2>
-      <% @current_sprint.goals.each do |goal| %>
-        <%= goal.name %></br>
-        <% goal.actions.each do |action| %>
-          <%= action.name%></br>
-        <% end %>
-      </br></br>
-      <% end %>
-  </div>
-<% end %>
-
-<div id="sprints_history">
-  <h1>History</h1>
-  <% @sprints_history.each do |sprint_history| %>
-    <h2><%= sprint_history.name %> <%= sprint_history.created_at %> </h2>
-    <% sprint_history.goals.each do |goal| %>
-      <%= goal.name %></br>
-      <% goal.actions.each do |action| %>
-        <%= action.name%></br>
-      <% end %>
-    </br></br>
+    <%= form_for @sprint do |sprint| %>
+        <%= render :partial => "form", :locals => { sprint: sprint  } %>
+      <footer>
+        <%= submit_tag "Save", class: "btn btn-default" %>
+      </footer>
     <% end %>
-    <hr>
-  <% end %>
-</div>
 
-<style>
-  .goals {
-    display: inline-block
-  }
-</style>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+  </div>
+
+
+  <% if @current_sprint %>
+    <div id="current_sprint" class="text-center">
+        <h3>Current Sprint</h3>
+        <%= render :partial => "show", :locals => { sprints: [@current_sprint] } %>
+    </div>
+  <% end %>
+
+  <div id="sprints_history" class="text-center">
+    <h3>History</h3>
+    <%= render :partial => "show", :locals => { sprints: @sprints_history } %>
+  </div>    
+</div>

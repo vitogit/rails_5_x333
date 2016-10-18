@@ -1,0 +1,12 @@
+  <% sprints.each do |sprint| %>
+    <h4><%= sprint.name %> <%= sprint.created_at %> </h4>
+    <% sprint.goals.each do |goal| %>
+      <div class="sprint-column">
+        <%= goal.name %></br>
+        <% goal.actions.each do |action| %>
+          <%= action.name%></br>
+        <% end %>
+      </div>
+    <% end %>
+    <hr>
+  <% end %>

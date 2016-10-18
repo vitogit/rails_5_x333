@@ -1,11 +1,11 @@
   <% disabled ||= false %>
-  <%= sprint.text_field :name, disabled: disabled %></br>
+  <%= sprint.text_field :name, disabled: disabled, class:"form-control"  %></br>
   
   <%= sprint.fields_for :goals do |goal| %>
-    <div class="goals">
-      <%= goal.text_field :name, disabled: disabled %></br>
+    <div class="sprint-column">
+      <%= goal.text_field :name, disabled: disabled, class:"form-control"  %></br>
       <%= goal.fields_for :actions do |action| %>
-        <%= action.text_field :name, disabled: disabled %></br>
+        <%= action.text_field :name, disabled: disabled, class:"form-control" %></br>
       <% end %>
     </div>
   <% end %>

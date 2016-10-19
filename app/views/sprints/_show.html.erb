@@ -1,38 +1,28 @@
-<h4><%= sprint.name %> <%= sprint.created_at %> </h4>
-<table class="table table-striped">
-   <thead>
-      <tr>
-        <% (0..2).each do |col_number| %>
-          <th>
-            <span class="table_cell"> <%= sprint.goals[col_number].name %> </span>
-          </th>
-        <% end %>
-      </tr>
-   </thead>
-   <tbody>
-      <% (0..2).each do |row_number| %>
-      <tr>
-        <% sprint.goals.each do |goal| %>
-          <td each={column, column_number in opts.columns} > 
-            <span class="table_cell">
+
+<div class="panel panel-primary">
+	<div class="panel-heading text-left">
+		<h3 class="panel-title"><%= sprint.name %> <span class="pull-right"><%= sprint.created_at.strftime("%d/%m/%Y") %></span> </h3>
+	</div>
+  <table class="table table-bordered">
+     <thead>
+        <tr>
+          <% (0..2).each do |col_number| %>
+            <th>
+              <%= sprint.goals[col_number].name %>
+            </th>
+          <% end %>
+        </tr>
+     </thead>
+     <tbody>
+        <% (0..2).each do |row_number| %>
+        <tr>
+          <% sprint.goals.each do |goal| %>
+            <td each={column, column_number in opts.columns} > 
               <%= goal.actions[row_number].name %>
-            </span>
-          </td>
+            </td>
+          <% end %>
+        </tr>
         <% end %>
-      </tr>
-      <% end %>
-
-   </tbody>
-</table>
-
-<style>
-  .table_cell {
-    width:100%;
-    display:inline-block;
-    border-bottom: 1px solid;
-  }
-  
-  th {
-    width: 33%;
-  }
-</style>
+     </tbody>
+  </table>
+</div>

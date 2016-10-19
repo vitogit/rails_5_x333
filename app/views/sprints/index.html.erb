@@ -1,12 +1,11 @@
 <div class="container theme-showcase" role="main">
-  <% if @current_sprint.nil? %>
-    <div class="text-center jumbotron" class="new_sprint" id="new_sprint">
+    <div class="text-center jumbotron new-sprint-section">
       <h3>New Sprint</h3>
 
       <%= form_for @sprint do |sprint| %>
           <%= render :partial => "form", :locals => { sprint: sprint  } %>
         <footer>
-          <%= submit_tag "Save", class: "btn btn-default" %>
+          <%= submit_tag "Save", class: "btn btn-sm btn-primary" %>
         </footer>
       <% end %>
 
@@ -14,22 +13,44 @@
         <div class="alert alert-<%= message_type %>"><%= message %></div>
       <% end %>
     </div>
-  <% end %>
 
   <% if @current_sprint %>
     <div id="current_sprint" class="text-center">
-        <h4>Current Sprint <%= submit_tag "End Sprint", class: "btn btn-xs " %></h4>
+        <h4>Current Sprint </h4>
         <%= render :partial => "show", :locals => { sprint: @current_sprint } %>
+        <button class="end-sprint btn btn-sm btn-primary"> New Sprint</button>
     </div>
   <% end %>
 
   <% if @sprints_history.present? %>
     <div id="sprints_history" class="text-center">
-      <h3>History</h3>
-      <% @sprints_history.each do |sprint| %>
-        <%= render :partial => "show", :locals => { sprint: sprint } %>
-        <hr>
-      <% end %>
+      <a id="history-link"><h5>History (show/hide)</h5></a>
+      <div class="history-list">
+        <% @sprints_history.each do |sprint| %>
+          <%= render :partial => "show", :locals => { sprint: sprint } %>
+          <hr>
+        <% end %>
+      </div> 
     </div> 
   <% end %>
 </div>
+
+<script>
+  $( document ).ready(function() {
+    $('.history-list').hide()
+    
+    <% if @current_sprint.present? %>
+      $('.new-sprint-section').hide();
+    <% end %>
+
+    $('.end-sprint').click(function() {
+      $('.new-sprint-section').show();
+    })
+
+    $('#history-link').click(function() {
+      $('.history-list').toggle();
+    })    
+  });
+
+
+</script>

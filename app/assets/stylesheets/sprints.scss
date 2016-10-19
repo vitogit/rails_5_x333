@@ -1,12 +1,30 @@
 // Place all the styles related to the Sprints controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-  .sprint-column {
-    display: inline-block;
-    width: 33%;    
-  }
-  .sprint-name {
-    width: 50%;   
-    margin: 0 auto; 
-    margin-bottom:20px;    
-  }
+.sprint-column {
+  display: inline-block;
+  width: 33%;    
+}
+.sprint-name {
+  width: 50%;   
+  margin: 0 auto; 
+  margin-bottom:20px;    
+}
+
+.table thead {
+    border-bottom: 2px solid;
+}
+  
+.table th {
+    width: 33%;
+    text-align: center;
+}
+
+#history-link {
+  text-align: left;
+  cursor:pointer;
+}
+
+#sprints_history {
+  margin-top: 100px;
+}

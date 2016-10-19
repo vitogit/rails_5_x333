@@ -17,19 +17,13 @@ class SprintsController < ApplicationController
   end
 
   def create
-    puts "params___"+params.to_json
-    puts "sprint_params___"+sprint_params.to_json
     @sprint = Sprint.new(sprint_params)
-    puts "sprint___"+@sprint.to_json
-    puts "sprint goals___"+@sprint.goals.to_json
-    puts "sprint goal.actions___"+@sprint.goals.first.actions.to_json
     if @sprint.save
       flash[:success] = "Success"
     else
       flash[:error] = "Error"
     end
     redirect_to :root
-
   end
 
   private

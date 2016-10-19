@@ -25,6 +25,15 @@ class SprintsController < ApplicationController
     end
     redirect_to :root
   end
+  
+  def complete_action
+    @action = Action.find(params[:id])
+    @action.completed = !@action.completed
+    @action.save
+     respond_to do |format|
+        format.js
+     end  
+  end
 
   private
 

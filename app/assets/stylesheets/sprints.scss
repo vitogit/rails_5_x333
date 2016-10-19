@@ -14,7 +14,13 @@
 .table thead {
     border-bottom: 2px solid;
 }
-  
+.table a
+{
+  display:block;
+  text-decoration:none!important;
+  color: $text-color;
+}
+
 .table th {
     width: 33%;
     text-align: center;
@@ -27,4 +33,8 @@
 
 #sprints_history {
   margin-top: 100px;
+}
+
+.completed {
+  background-color: #2ce02c;
 }

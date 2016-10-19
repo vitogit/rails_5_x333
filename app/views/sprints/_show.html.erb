@@ -17,8 +17,8 @@
         <% (0..2).each do |row_number| %>
         <tr>
           <% sprint.goals.each do |goal| %>
-            <td each={column, column_number in opts.columns} > 
-              <%= goal.actions[row_number].name %>
+            <td id="action_<%=goal.actions[row_number].id%>" class="<%= goal.actions[row_number].completed ? 'completed' : '' %>"> 
+              <%= link_to goal.actions[row_number].name, complete_action_path(goal.actions[row_number].id), remote: true, method: :put, class:'action' %>
             </td>
           <% end %>
         </tr>

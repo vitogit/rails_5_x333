@@ -1,0 +1,4 @@
+var id = <%= @action.id %>
+$('#action_'+id).bind('ajax:success', function() {
+   $(this).toggleClass('completed')
+});

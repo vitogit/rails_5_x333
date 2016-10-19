@@ -1,10 +1,10 @@
 class SprintsController < ApplicationController
   def index
-    @sprint = Sprint.new name: 'sprint1'
+    @sprint = Sprint.new
     (1..3).each do |i|
-      goal = @sprint.goals.build name: "goal_#{i}"
+      goal = @sprint.goals.build
       (1..3).each do |j|
-        goal.actions.build  name: "action_#{i}_#{j}"
+        goal.actions.build
       end
     end
     

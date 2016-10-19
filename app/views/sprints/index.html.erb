@@ -1,29 +1,35 @@
 <div class="container theme-showcase" role="main">
-  <div class="text-center jumbotron" class="new_sprint" id="new_sprint">
-    <h3>New Sprint</h3>
+  <% if @current_sprint.nil? %>
+    <div class="text-center jumbotron" class="new_sprint" id="new_sprint">
+      <h3>New Sprint</h3>
 
-    <%= form_for @sprint do |sprint| %>
-        <%= render :partial => "form", :locals => { sprint: sprint  } %>
-      <footer>
-        <%= submit_tag "Save", class: "btn btn-default" %>
-      </footer>
-    <% end %>
+      <%= form_for @sprint do |sprint| %>
+          <%= render :partial => "form", :locals => { sprint: sprint  } %>
+        <footer>
+          <%= submit_tag "Save", class: "btn btn-default" %>
+        </footer>
+      <% end %>
 
-    <% flash.each do |message_type, message| %>
-      <div class="alert alert-<%= message_type %>"><%= message %></div>
-    <% end %>
-  </div>
-
-
-  <% if @current_sprint %>
-    <div id="current_sprint" class="text-center">
-        <h3>Current Sprint</h3>
-        <%= render :partial => "show", :locals => { sprints: [@current_sprint] } %>
+      <% flash.each do |message_type, message| %>
+        <div class="alert alert-<%= message_type %>"><%= message %></div>
+      <% end %>
     </div>
   <% end %>
 
-  <div id="sprints_history" class="text-center">
-    <h3>History</h3>
-    <%= render :partial => "show", :locals => { sprints: @sprints_history } %>
-  </div>    
+  <% if @current_sprint %>
+    <div id="current_sprint" class="text-center">
+        <h4>Current Sprint <%= submit_tag "End Sprint", class: "btn btn-xs " %></h4>
+        <%= render :partial => "show", :locals => { sprint: @current_sprint } %>
+    </div>
+  <% end %>
+
+  <% if @sprints_history.present? %>
+    <div id="sprints_history" class="text-center">
+      <h3>History</h3>
+      <% @sprints_history.each do |sprint| %>
+        <%= render :partial => "show", :locals => { sprint: sprint } %>
+        <hr>
+      <% end %>
+    </div> 
+  <% end %>
 </div>

@@ -21,7 +21,7 @@ class SprintsController < ApplicationController
     if @sprint.save
       flash[:success] = "Success"
     else
-      flash[:error] = "Error"
+      flash[:danger] = @sprint.errors.full_messages
     end
     redirect_to :root
   end

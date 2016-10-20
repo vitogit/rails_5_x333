@@ -36,7 +36,7 @@
 </div>
 
 <script>
-  $( document ).ready(function() {
+  $( document).ready(function() {
     $('.history-list').hide()
     
     <% if @current_sprint.present? %>
@@ -49,7 +49,12 @@
 
     $('#history-link').click(function() {
       $('.history-list').toggle();
-    })    
+    })  
+    
+    if ($('.alert').length) {
+      $('.new-sprint-section').show();
+    }
+      
   });
 
 
